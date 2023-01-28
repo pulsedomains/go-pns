@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package ens
+package pns
 
 import (
 	"errors"
@@ -23,10 +23,10 @@ import (
 	"github.com/ethereum/go-ethereum/accounts/abi/bind"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/core/types"
-	"github.com/wealdtech/go-ens/v3/contracts/ethcontroller"
+	"github.com/pulsedomains/go-pns/v3/contracts/ethcontroller"
 )
 
-// ETHController is the structure for the .eth controller contract
+// ETHController is the structure for the .pls controller contract
 type ETHController struct {
 	backend      bind.ContractBackend
 	Contract     *ethcontroller.Contract
@@ -54,7 +54,7 @@ func NewETHController(backend bind.ContractBackend, domain string) (*ETHControll
 	return NewETHControllerAt(backend, domain, controllerAddress)
 }
 
-// NewETHControllerAt creates a .eth controller at a given address
+// NewETHControllerAt creates a .pls controller at a given address
 func NewETHControllerAt(backend bind.ContractBackend, domain string, address common.Address) (*ETHController, error) {
 	contract, err := ethcontroller.NewContract(address, backend)
 	if err != nil {

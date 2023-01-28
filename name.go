@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package ens
+package pns
 
 import (
 	"crypto/rand"
@@ -26,14 +26,14 @@ import (
 	"github.com/ethereum/go-ethereum/core/types"
 )
 
-// Name represents an ENS name, for example 'foo.bar.eth'.
+// Name represents an PNS name, for example 'foo.bar.pls'.
 type Name struct {
 	backend bind.ContractBackend
-	// Name is the fully-qualified name of an ENS domain e.g. foo.bar.eth
+	// Name is the fully-qualified name of an PNS domain e.g. foo.bar.pls
 	Name string
-	// Domain is the domain of an ENS domain e.g. bar.eth
+	// Domain is the domain of an PNS domain e.g. bar.pls
 	Domain string
-	// Label is the name part of an ENS domain e.g. foo
+	// Label is the name part of an PNS domain e.g. foo
 	Label string
 	// Contracts
 	registry   *Registry
@@ -41,7 +41,7 @@ type Name struct {
 	controller *ETHController
 }
 
-// NewName creates an ENS name structure.
+// NewName creates an PNS name structure.
 // Note that this does not create the name on-chain.
 func NewName(backend bind.ContractBackend, name string) (*Name, error) {
 	name, err := NormaliseDomain(name)

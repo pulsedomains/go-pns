@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package ens
+package pns
 
 import (
 	"errors"
@@ -21,9 +21,9 @@ import (
 	"github.com/ethereum/go-ethereum/common/math"
 )
 
-// DeriveTokenID derive tokenID from the ENS domain.
+// DeriveTokenID derive tokenID from the PNS domain.
 //
-// The tokenID of the ENS name is simply the uint256 representation of the tokenID of ERC721
+// The tokenID of the PNS name is simply the uint256 representation of the tokenID of ERC721
 func DeriveTokenID(backend bind.ContractBackend, domain string) (string, error) {
 	if domain == "" {
 		return "", errors.New("empty domain")

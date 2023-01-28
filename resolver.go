@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package ens
+package pns
 
 import (
 	"bytes"
@@ -26,7 +26,7 @@ import (
 	"github.com/ethereum/go-ethereum/accounts/abi/bind"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/core/types"
-	"github.com/wealdtech/go-ens/v3/contracts/resolver"
+	"github.com/pulsedomains/go-pns/v3/contracts/resolver"
 )
 
 var zeroHash = make([]byte, 32)
@@ -41,7 +41,7 @@ type Resolver struct {
 	domain       string
 }
 
-// NewResolver obtains an ENS resolver for a given domain
+// NewResolver obtains an PNS resolver for a given domain
 func NewResolver(backend bind.ContractBackend, domain string) (*Resolver, error) {
 	registry, err := NewRegistry(backend)
 	if err != nil {
@@ -65,7 +65,7 @@ func NewResolver(backend bind.ContractBackend, domain string) (*Resolver, error)
 	return NewResolverAt(backend, domain, resolver)
 }
 
-// NewResolverAt obtains an ENS resolver at a given address
+// NewResolverAt obtains an PNS resolver at a given address
 func NewResolverAt(backend bind.ContractBackend, domain string, address common.Address) (*Resolver, error) {
 	contract, err := resolver.NewContract(address, backend)
 	if err != nil {
@@ -73,7 +73,7 @@ func NewResolverAt(backend bind.ContractBackend, domain string, address common.A
 	}
 
 	// Ensure this really is a resolver contract
-	nameHash, err := NameHash("test.eth")
+	nameHash, err := NameHash("test.pls")
 	if err != nil {
 		return nil, err
 	}
@@ -94,7 +94,7 @@ func NewResolverAt(backend bind.ContractBackend, domain string, address common.A
 
 // PublicResolverAddress obtains the address of the public resolver for a chain
 func PublicResolverAddress(backend bind.ContractBackend) (common.Address, error) {
-	return Resolve(backend, "resolver.eth")
+	return Resolve(backend, "resolver.pls")
 }
 
 // Address returns the Ethereum address of the domain
@@ -181,7 +181,7 @@ func (r *Resolver) InterfaceImplementer(interfaceID [4]byte) (common.Address, er
 	return r.Contract.InterfaceImplementer(nil, nameHash, interfaceID)
 }
 
-// Resolve resolves an ENS name in to an Etheruem address
+// Resolve resolves an PNS name in to an Etheruem address
 // This will return an error if the name is not found or otherwise 0
 func Resolve(backend bind.ContractBackend, input string) (address common.Address, err error) {
 	if strings.Contains(input, ".") {

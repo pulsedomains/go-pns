@@ -1,4 +1,4 @@
-package ens
+package pns
 
 import (
 	"fmt"
@@ -6,14 +6,14 @@ import (
 )
 
 // DomainLevel calculates the level of the domain presented.
-// A top-level domain (e.g. 'eth') will be 0, a domain (e.g.
-// 'foo.eth') will be 1, a subdomain (e.g. 'bar.foo.eth' will
+// A top-level domain (e.g. 'pls') will be 0, a domain (e.g.
+// 'foo.pls') will be 1, a subdomain (e.g. 'bar.foo.pls' will
 // be 2, etc.
 func DomainLevel(name string) (level int) {
 	return len(strings.Split(name, ".")) - 1
 }
 
-// NormaliseDomain turns ENS domain in to normal form
+// NormaliseDomain turns PNS domain in to normal form
 func NormaliseDomain(domain string) (string, error) {
 	wildcard := false
 	if strings.HasPrefix(domain, "*.") {
@@ -37,7 +37,7 @@ func NormaliseDomain(domain string) (string, error) {
 	return output, nil
 }
 
-// NormaliseDomainStrict turns ENS domain in to normal form, using strict DNS
+// NormaliseDomainStrict turns PNS domain in to normal form, using strict DNS
 // rules (e.g. no underscores)
 func NormaliseDomainStrict(domain string) (string, error) {
 	wildcard := false
@@ -62,7 +62,7 @@ func NormaliseDomainStrict(domain string) (string, error) {
 	return output, nil
 }
 
-// Tld obtains the top-level domain of an ENS name
+// Tld obtains the top-level domain of an PNS name
 func Tld(domain string) string {
 	domain, err := NormaliseDomain(domain)
 	if err != nil {
@@ -75,11 +75,11 @@ func Tld(domain string) string {
 	return tld
 }
 
-// Domain obtains the domain of an ENS name, including subdomains.  It does this
+// Domain obtains the domain of an PNS name, including subdomains.  It does this
 // by removing everything up to and including the first period.
-// For example, 'eth' will return ''
-//              'foo.eth' will return 'eth'
-//              'bar.foo.eth' will return 'foo.eth'
+// For example, 'pls' will return ''
+//              'foo.pls' will return 'pls'
+//              'bar.foo.pls' will return 'foo.pls'
 func Domain(domain string) string {
 	if idx := strings.IndexByte(domain, '.'); idx >= 0 {
 		return domain[idx+1:]

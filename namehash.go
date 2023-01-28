@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package ens
+package pns
 
 import (
 	"strings"
@@ -25,7 +25,7 @@ import (
 var p = idna.New(idna.MapForLookup(), idna.StrictDomainName(false), idna.Transitional(false))
 var pStrict = idna.New(idna.MapForLookup(), idna.StrictDomainName(true), idna.Transitional(false))
 
-// Normalize normalizes a name according to the ENS rules
+// Normalize normalizes a name according to the PNS rules
 func Normalize(input string) (output string, err error) {
 	output, err = p.ToUnicode(input)
 	if err != nil {
@@ -54,7 +54,7 @@ func LabelHash(label string) (hash [32]byte, err error) {
 }
 
 // NameHash generates a hash from a name that can be used to
-// look up the name in ENS
+// look up the name in PNS
 func NameHash(name string) (hash [32]byte, err error) {
 	if name == "" {
 		return

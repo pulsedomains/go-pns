@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package ens
+package pns
 
 import (
 	"fmt"
@@ -22,7 +22,7 @@ import (
 	"github.com/ethereum/go-ethereum/accounts/abi/bind"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/core/types"
-	"github.com/wealdtech/go-ens/v3/contracts/auctionregistrar"
+	"github.com/pulsedomains/go-pns/v3/contracts/auctionregistrar"
 )
 
 // AuctionRegistrar is the structure for the auction registrar contract

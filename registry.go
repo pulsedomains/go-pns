@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package ens
+package pns
 
 import (
 	"errors"
@@ -22,9 +22,9 @@ import (
 	"github.com/ethereum/go-ethereum/accounts/abi/bind"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/core/types"
-	"github.com/wealdtech/go-ens/v3/contracts/auctionregistrar"
-	"github.com/wealdtech/go-ens/v3/contracts/registry"
-	"github.com/wealdtech/go-ens/v3/util"
+	"github.com/pulsedomains/go-pns/v3/contracts/auctionregistrar"
+	"github.com/pulsedomains/go-pns/v3/contracts/registry"
+	"github.com/pulsedomains/go-pns/v3/util"
 )
 
 // Registry is the structure for the registry contract
@@ -34,7 +34,7 @@ type Registry struct {
 	ContractAddr common.Address
 }
 
-// NewRegistry obtains the ENS registry
+// NewRegistry obtains the PNS registry
 func NewRegistry(backend bind.ContractBackend) (*Registry, error) {
 	address, err := RegistryContractAddress(backend)
 	if err != nil {
@@ -43,7 +43,7 @@ func NewRegistry(backend bind.ContractBackend) (*Registry, error) {
 	return NewRegistryAt(backend, address)
 }
 
-// NewRegistryAt obtains the ENS registry at a given address
+// NewRegistryAt obtains the PNS registry at a given address
 func NewRegistryAt(backend bind.ContractBackend, address common.Address) (*Registry, error) {
 	contract, err := registry.NewContract(address, backend)
 	if err != nil {

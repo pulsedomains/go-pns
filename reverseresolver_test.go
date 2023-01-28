@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package ens_test
+package pns_test
 
 import (
 	"testing"
@@ -20,7 +20,7 @@ import (
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/ethclient"
 	"github.com/stretchr/testify/require"
-	ens "github.com/wealdtech/go-ens/v3"
+	pns "github.com/pulsedomains/go-pns/v3"
 )
 
 // TestReverseResolve tests the reverse resolution functionality.
@@ -45,7 +45,7 @@ func TestReverseResolve(t *testing.T) {
 		{
 			name:    "Exists",
 			address: common.HexToAddress("0x809FA673fe2ab515FaA168259cB14E2BeDeBF68e"),
-			res:     "avsa.eth",
+			res:     "avsa.pls",
 		},
 	}
 
@@ -54,7 +54,7 @@ func TestReverseResolve(t *testing.T) {
 
 	for _, test := range tests {
 		t.Run(test.name, func(t *testing.T) {
-			res, err := ens.ReverseResolve(client, test.address)
+			res, err := pns.ReverseResolve(client, test.address)
 			if test.err != "" {
 				require.EqualError(t, err, test.err)
 			} else {

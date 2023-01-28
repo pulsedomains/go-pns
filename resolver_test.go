@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package ens
+package pns
 
 import (
 	"encoding/hex"
@@ -37,40 +37,40 @@ func TestResolveZero(t *testing.T) {
 }
 
 func TestResolveNotPresent(t *testing.T) {
-	_, err := Resolve(client, "sirnotappearinginthisregistry.eth")
+	_, err := Resolve(client, "sirnotappearinginthisregistry.pls")
 	require.NotNil(t, err, "Resolved name that does not exist")
 	assert.Equal(t, "unregistered name", err.Error(), "Unexpected error")
 }
 
 // func TestResolveNoResolver(t *testing.T) {
-// 	_, err := Resolve(client, "noresolver.eth")
+// 	_, err := Resolve(client, "noresolver.pls")
 // 	require.NotNil(t, err, "Resolved name without a resolver")
 // 	assert.Equal(t, "no resolver", err.Error(), "Unexpected error")
 // }
 
 func TestResolveBadResolver(t *testing.T) {
-	_, err := Resolve(client, "resolvestozero.eth")
+	_, err := Resolve(client, "resolvestozero.pls")
 	require.NotNil(t, err, "Resolved name with a bad resolver")
 	assert.Equal(t, "no address", err.Error(), "Unexpected error")
 }
 
 func TestResolveTestEnsTest(t *testing.T) {
 	expected := "ed96dd3be847b387217ef9de5b20d8392a6cdf40"
-	actual, err := Resolve(client, "test.enstest.eth")
+	actual, err := Resolve(client, "test.pnstest.pls")
 	require.Nil(t, err, "Error resolving name")
 	assert.Equal(t, expected, hex.EncodeToString(actual[:]), "Did not receive expected result")
 }
 
 func TestResolveResolverEth(t *testing.T) {
 	expected := "4976fb03c32e5b8cfe2b6ccb31c09ba78ebaba41"
-	actual, err := Resolve(client, "resolver.eth")
+	actual, err := Resolve(client, "resolver.pls")
 	require.Nil(t, err, "Error resolving name")
 	assert.Equal(t, expected, hex.EncodeToString(actual[:]), "Did not receive expected result")
 }
 
 func TestResolveEthereum(t *testing.T) {
 	expected := "de0b295669a9fd93d5f28d9ec85e40f4cb697bae"
-	actual, err := Resolve(client, "ethereum.eth")
+	actual, err := Resolve(client, "ethereum.pls")
 	require.Nil(t, err, "Error resolving name")
 	assert.Equal(t, expected, hex.EncodeToString(actual[:]), "Did not receive expected result")
 }
@@ -95,7 +95,7 @@ func TestResolveHexString(t *testing.T) {
 }
 
 func TestReverseResolveTestEnsTest(t *testing.T) {
-	expected := "nick.eth"
+	expected := "nick.pls"
 	address := common.HexToAddress("b8c2C29ee19D8307cb7255e1Cd9CbDE883A267d5")
 	actual, err := ReverseResolve(client, address)
 	require.Nil(t, err, "Error resolving address")

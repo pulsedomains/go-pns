@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package ens
+package pns
 
 import (
 	"errors"
@@ -20,7 +20,7 @@ import (
 	"github.com/ethereum/go-ethereum/accounts/abi/bind"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/core/types"
-	"github.com/wealdtech/go-ens/v3/contracts/reverseregistrar"
+	"github.com/pulsedomains/go-pns/v3/contracts/reverseregistrar"
 )
 
 // ReverseRegistrar is the structure for the reverse registrar

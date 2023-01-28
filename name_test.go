@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package ens
+package pns
 
 import (
 	"context"
@@ -33,7 +33,7 @@ import (
 	"github.com/ethereum/go-ethereum/ethclient"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-	string2eth "github.com/wealdtech/go-string2eth"
+	string2pls "github.com/pulsedomains/go-string2pls"
 )
 
 func TestName(t *testing.T) {
@@ -44,7 +44,7 @@ func TestName(t *testing.T) {
 	dsRegistrationInterval := 60 * time.Second
 
 	client, _ := ethclient.Dial("https://mainnet.infura.io/v3/831a5442dc2e4536a9f8dee4ea1707a6")
-	name, err := NewName(client, "resolver.eth")
+	name, err := NewName(client, "resolver.pls")
 	require.Nil(t, err, "Failed to create name")
 
 	registrant, err := name.Registrant()
@@ -84,7 +84,7 @@ func TestNameReRegistration(t *testing.T) {
 		t.Skip()
 	}
 	client, _ := ethclient.Dial("https://mainnet.infura.io/v3/831a5442dc2e4536a9f8dee4ea1707a6")
-	name, err := NewName(client, "resolver.eth")
+	name, err := NewName(client, "resolver.pls")
 	require.Nil(t, err, "Failed to create name")
 
 	// Register stage 1 - should fail as already registered
@@ -96,7 +96,7 @@ func TestNameReRegistration(t *testing.T) {
 
 func TestInvalidName(t *testing.T) {
 	client, _ := ethclient.Dial("https://mainnet.infura.io/v3/831a5442dc2e4536a9f8dee4ea1707a6")
-	_, err := NewName(client, "ab.eth")
+	_, err := NewName(client, "ab.pls")
 	require.Equal(t, err.Error(), "name is not valid according to the rules of the registrar (too short, invalid characters, etc.)")
 }
 
@@ -224,7 +224,7 @@ func TestNameExtension(t *testing.T) {
 		t.Skip()
 	}
 	client, _ := ethclient.Dial("https://mainnet.infura.io/v3/831a5442dc2e4536a9f8dee4ea1707a6")
-	name, err := NewName(client, "foobar5.eth")
+	name, err := NewName(client, "foobar5.pls")
 	require.Nil(t, err, "Failed to create name")
 
 	oldExpires, err := name.Expires()
@@ -248,7 +248,7 @@ func TestNameExtensionLowValue(t *testing.T) {
 		t.Skip()
 	}
 	client, _ := ethclient.Dial("https://mainnet.infura.io/v3/831a5442dc2e4536a9f8dee4ea1707a6")
-	name, err := NewName(client, "foobar5.eth")
+	name, err := NewName(client, "foobar5.pls")
 	require.Nil(t, err, "Failed to create name")
 
 	opts, err := generateTxOpts(client, registrant, "1 wei")
@@ -280,11 +280,11 @@ func TestNameSubdomainCreate(t *testing.T) {
 	}
 	client, _ := ethclient.Dial("https://mainnet.infura.io/v3/831a5442dc2e4536a9f8dee4ea1707a6")
 
-	name, err := NewName(client, "foobar5.eth")
+	name, err := NewName(client, "foobar5.pls")
 	require.Nil(t, err, "Failed to create name")
 
 	sub := unregisteredDomain(client)
-	sub = strings.TrimSuffix(sub, ".eth")
+	sub = strings.TrimSuffix(sub, ".pls")
 
 	opts, err := generateTxOpts(client, dsRegistrant, "0")
 	require.Nil(t, err, "Failed to generate transaction options")
@@ -295,7 +295,7 @@ func TestNameSubdomainCreate(t *testing.T) {
 	waitForTransaction(client, tx.Hash())
 
 	// Confirm registrantship of the subdomain
-	subdomain := fmt.Sprintf("%s.foobar5.eth", sub)
+	subdomain := fmt.Sprintf("%s.foobar5.pls", sub)
 
 	registry, err := NewRegistry(client)
 	require.Nil(t, err, "Failed to create registry")
@@ -311,10 +311,10 @@ func TestNameSubdomainCreateAlreadyExists(t *testing.T) {
 	}
 	client, _ := ethclient.Dial("https://mainnet.infura.io/v3/831a5442dc2e4536a9f8dee4ea1707a6")
 
-	name, err := NewName(client, "foobar5.eth")
+	name, err := NewName(client, "foobar5.pls")
 	require.Nil(t, err, "Failed to create name")
 
-	sub := "go-ens-test-1331354196"
+	sub := "go-pns-test-1331354196"
 
 	opts, err := generateTxOpts(client, dsRegistrant, "0")
 	require.Nil(t, err, "Failed to generate transaction options")
@@ -332,7 +332,7 @@ func TestSetController(t *testing.T) {
 	dsController := common.HexToAddress("E195c59BCF26fD36c82d1C720860127A5c1c4040")
 	client, _ := ethclient.Dial("https://mainnet.infura.io/v3/831a5442dc2e4536a9f8dee4ea1707a6")
 
-	name, err := NewName(client, "foobar5.eth")
+	name, err := NewName(client, "foobar5.pls")
 	require.Nil(t, err, "Failed to create name")
 
 	// Ensure that the registrant starts out as the controller
@@ -376,7 +376,7 @@ func TestSetControllerUnauthorised(t *testing.T) {
 	}
 	client, _ := ethclient.Dial("https://mainnet.infura.io/v3/831a5442dc2e4536a9f8dee4ea1707a6")
 
-	name, err := NewName(client, "foobar5.eth")
+	name, err := NewName(client, "foobar5.pls")
 	require.Nil(t, err, "Failed to create name")
 
 	// Ensure that the registrant starts out as the controller
@@ -400,7 +400,7 @@ func TestReclaim(t *testing.T) {
 	dsController := common.HexToAddress("E195c59BCF26fD36c82d1C720860127A5c1c4040")
 	client, _ := ethclient.Dial("https://mainnet.infura.io/v3/831a5442dc2e4536a9f8dee4ea1707a6")
 
-	name, err := NewName(client, "foobar5.eth")
+	name, err := NewName(client, "foobar5.pls")
 	require.Nil(t, err, "Failed to create name")
 
 	// Ensure that the registrant starts out as the controller
@@ -441,7 +441,7 @@ func TestReclaimUnauthorised(t *testing.T) {
 	}
 	client, _ := ethclient.Dial("https://mainnet.infura.io/v3/831a5442dc2e4536a9f8dee4ea1707a6")
 
-	name, err := NewName(client, "foobar5.eth")
+	name, err := NewName(client, "foobar5.pls")
 	require.Nil(t, err, "Failed to create name")
 
 	// Ensure that the registrant starts out as the controller
@@ -468,7 +468,7 @@ func TestTransfer(t *testing.T) {
 	}
 	client, _ := ethclient.Dial("https://mainnet.infura.io/v3/831a5442dc2e4536a9f8dee4ea1707a6")
 
-	name, err := NewName(client, "foobar5.eth")
+	name, err := NewName(client, "foobar5.pls")
 	require.Nil(t, err, "Failed to create name")
 
 	// Ensure the existing registrant is correct
@@ -509,7 +509,7 @@ func TestTransferUnauthorised(t *testing.T) {
 	}
 	client, _ := ethclient.Dial("https://mainnet.infura.io/v3/831a5442dc2e4536a9f8dee4ea1707a6")
 
-	name, err := NewName(client, "foobar5.eth")
+	name, err := NewName(client, "foobar5.pls")
 	require.Nil(t, err, "Failed to create name")
 
 	// Ensure that the registrant starts out as the controller
@@ -535,7 +535,7 @@ func generateTxOpts(client *ethclient.Client, sender common.Address, valueStr st
 		return nil, errors.New("no signer")
 	}
 
-	value, err := string2eth.StringToWei(valueStr)
+	value, err := string2pls.StringToWei(valueStr)
 	if err != nil {
 		return nil, err
 	}
@@ -582,7 +582,7 @@ func unregisteredDomain(client *ethclient.Client) string {
 	registry, _ := NewRegistry(client)
 	for {
 		// #nosec G404
-		domain := fmt.Sprintf("go-ens-test-%d.eth", rand.Int31())
+		domain := fmt.Sprintf("go-pns-test-%d.pls", rand.Int31())
 		controller, _ := registry.Owner(domain)
 		if controller == UnknownAddress {
 			return domain

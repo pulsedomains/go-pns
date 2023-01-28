@@ -531,7 +531,7 @@
   {
     "inputs": [
       {
-        "name": "_ens",
+        "name": "_pns",
         "type": "address"
       },
       {

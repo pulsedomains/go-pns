@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package ens
+package pns
 
 import (
 	"encoding/base32"
@@ -26,7 +26,7 @@ import (
 	"github.com/multiformats/go-multibase"
 	"github.com/multiformats/go-multihash"
 	"github.com/pkg/errors"
-	"github.com/wealdtech/go-multicodec"
+	"github.com/pulsedomains/go-multicodec"
 )
 
 // StringToContenthash turns EIP-1577 text format in to EIP-1577 binary format

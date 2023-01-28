@@ -1,4 +1,4 @@
-package ens
+package pns
 
 import (
 	"github.com/ethereum/go-ethereum/ethclient"
@@ -14,18 +14,18 @@ func TestDeriveTokenId(t *testing.T) {
 		err      string
 	}{
 		{
-			name:     "Valid ENS domain",
+			name:     "Valid PNS domain",
 			expected: "79233663829379634837589865448569342784712482819484549289560981379859480642508",
-			input:    "vitalik.eth",
+			input:    "vitalik.pls",
 		},
 		{
-			name:     "Invalid ENS domain",
+			name:     "Invalid PNS domain",
 			expected: "",
 			input:    "foo.bar",
 			err:      "unregistered name",
 		},
 		{
-			name:     "Blank ENS domain",
+			name:     "Blank PNS domain",
 			expected: "",
 			input:    "",
 			err:      "empty domain",

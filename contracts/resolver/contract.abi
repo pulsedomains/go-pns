@@ -555,7 +555,7 @@
     "inputs": [
       {
         "internalType": "contract ENS",
-        "name": "_ens",
+        "name": "_pns",
         "type": "address"
       }
     ],

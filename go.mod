@@ -1,4 +1,4 @@
-module github.com/wealdtech/go-ens/v3
+module github.com/pulsedomains/go-pns/v3
 
 go 1.18
 
@@ -9,8 +9,8 @@ require (
 	github.com/multiformats/go-multihash v0.2.1
 	github.com/pkg/errors v0.9.1
 	github.com/stretchr/testify v1.8.0
-	github.com/wealdtech/go-multicodec v1.4.0
-	github.com/wealdtech/go-string2eth v1.1.0
+	github.com/pulsedomains/go-multicodec v1.4.0
+	github.com/pulsedomains/go-string2pls v1.1.0
 	golang.org/x/crypto v0.4.0
 	golang.org/x/net v0.4.0
 )

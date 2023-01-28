@@ -85,10 +85,10 @@ github.com/tklauser/numcpus v0.6.0 h1:kebhY2Qt+3U6RNK7UqpYNA+tJ23IBEGKkB7JQBfDYm
 github.com/tklauser/numcpus v0.6.0/go.mod h1:FEZLMke0lhOUG6w2JadTzp0a+Nl8PF/GFkQ5UVIcaL4=
 github.com/tyler-smith/go-bip39 v1.0.1-0.20181017060643-dbb3b84ba2ef h1:wHSqTBrZW24CsNJDfeh9Ex6Pm0Rcpc7qrgKBiL44vF4=
 github.com/urfave/cli/v2 v2.17.2-0.20221006022127-8f469abc00aa h1:5SqCsI/2Qya2bCzK15ozrqo2sZxkh0FHynJZOTVoV6Q=
-github.com/wealdtech/go-multicodec v1.4.0 h1:iq5PgxwssxnXGGPTIK1srvt6U5bJwIp7k6kBrudIWxg=
-github.com/wealdtech/go-multicodec v1.4.0/go.mod h1:aedGMaTeYkIqi/KCPre1ho5rTb3hGpu/snBOS3GQLw4=
-github.com/wealdtech/go-string2eth v1.1.0 h1:USJQmysUrBYYmZs7d45pMb90hRSyEwizP7lZaOZLDAw=
-github.com/wealdtech/go-string2eth v1.1.0/go.mod h1:RUzsLjJtbZaJ/3UKn9kY19a/vCCUHtEWoUW3uiK6yGU=
+github.com/pulsedomains/go-multicodec v1.4.0 h1:iq5PgxwssxnXGGPTIK1srvt6U5bJwIp7k6kBrudIWxg=
+github.com/pulsedomains/go-multicodec v1.4.0/go.mod h1:aedGMaTeYkIqi/KCPre1ho5rTb3hGpu/snBOS3GQLw4=
+github.com/pulsedomains/go-string2pls v1.1.0 h1:USJQmysUrBYYmZs7d45pMb90hRSyEwizP7lZaOZLDAw=
+github.com/pulsedomains/go-string2pls v1.1.0/go.mod h1:RUzsLjJtbZaJ/3UKn9kY19a/vCCUHtEWoUW3uiK6yGU=
 github.com/xrash/smetrics v0.0.0-20201216005158-039620a65673 h1:bAn7/zixMGCfxrRTfdpNzjtPYqr8smhKouy9mxVdGPU=
 github.com/yusufpapurcu/wmi v1.2.2 h1:KBNDSne4vP5mbSWnJbO+51IMOXJB67QiYCSBrubbPRg=
 github.com/yusufpapurcu/wmi v1.2.2/go.mod h1:SBZ9tNy3G9/m5Oi98Zks0QjeHVDvuK0qfxQmPyzfmi0=

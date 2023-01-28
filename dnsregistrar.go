@@ -12,14 +12,14 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package ens
+package pns
 
 import (
 	"fmt"
 
 	"github.com/ethereum/go-ethereum/accounts/abi/bind"
 	"github.com/ethereum/go-ethereum/common"
-	"github.com/wealdtech/go-ens/v3/contracts/dnsregistrar"
+	"github.com/pulsedomains/go-pns/v3/contracts/dnsregistrar"
 )
 
 // DNSRegistrar is the structure for the registrar
