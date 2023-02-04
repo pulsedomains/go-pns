@@ -118,7 +118,8 @@ func (r *Registry) SetSubdomainOwner(opts *bind.TransactOpts, name string, subna
 // This is (currently) the same for all chains.
 func RegistryContractAddress(backend bind.ContractBackend) (common.Address, error) {
 	// Instantiate the registry contract.  The same for all chains.
-	return common.HexToAddress("00000000000C2E074eC69A0dFb2997BA6C7d2e1e"), nil
+	// TODO: Update me
+	return common.HexToAddress("4ba4261816255a80114a08587606bF14B0d9d13E"), nil
 }
 
 // RegistryContractFromRegistrar obtains the registry contract given an
