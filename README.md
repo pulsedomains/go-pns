@@ -69,7 +69,7 @@ name, err := pns.NewName(client, "mydomain.pls")
 Addresses can be set and obtained using the address functions, for example to get an address:
 
 ```go
-COIN_TYPE_PLS := uint64(369)
+COIN_TYPE_PLS := uint64(1028)
 address, err := name.Address(COIN_TYPE_PLS)
 ```
 
